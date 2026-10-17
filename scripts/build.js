@@ -40,68 +40,91 @@ function renderDesc(text) {
   return html;
 }
 
+// Siddhak.in design tokens (siddhak-website-live src/styles/global.css, Oct 2026 black & gold)
 const CSS = `
-:root{--saffron:#c2410c;--saffron-dark:#9a3412;--cream:#fdf8f0;--card:#ffffff;--ink:#2d2016;--muted:#7a6a58;--line:#eadfce;--green:#128c3e}
+:root{
+--ivory:#0c0a07;--ivory-deep:#16120b;--ink:#f3ead7;--ink-soft:#b8ac93;
+--kumkum:#d4af5a;--kumkum-dark:#ecd08a;--gold:#c9a24b;--line:#332a1b;
+--paper:#14100a;--well:#f4efe4;--on-gold:#171108;--wa:#1f7a4d;--wa-dark:#18643f;
+--radius:14px;--radius-sm:8px;--ease:cubic-bezier(.22,1,.36,1);
+--font-display:'Cormorant Garamond','Tiro Devanagari Hindi',Georgia,serif;
+--font-body:'Mukta',system-ui,-apple-system,'Segoe UI',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Mukta',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.65}
-a{color:var(--saffron-dark);text-decoration:none}
-.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
-header.site{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+html{color-scheme:dark}
+body{font-family:var(--font-body);background:var(--ivory);color:var(--ink);line-height:1.6;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none;text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--kumkum);outline-offset:2px;border-radius:4px}
+::selection{background:var(--gold);color:var(--on-gold)}
+img{max-width:100%;height:auto}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.15;letter-spacing:.005em;overflow-wrap:anywhere}
+.hi{font-family:'Tiro Devanagari Hindi',var(--font-display);line-height:1.35}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+@media(min-width:768px){.wrap{padding:0 28px}}
+.gold-rule{height:1px;border:0;background:linear-gradient(90deg,transparent,var(--gold) 20%,var(--gold) 80%,transparent);opacity:.55}
+.eyebrow{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
+header.site{background:rgb(12 10 7 / .92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
 header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
-.logo{font-family:'Marcellus',serif;font-size:1.35rem;color:var(--saffron-dark)}
-.logo small{display:block;font-family:'Mukta',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-nav.cats{display:flex;gap:14px;flex-wrap:wrap;font-size:.92rem}
-nav.cats a{color:var(--muted)}
-nav.cats a:hover{color:var(--saffron)}
-.hero{background:linear-gradient(135deg,#7c2d12,#c2410c);color:#fff;padding:52px 0;text-align:center}
-.hero h1{font-family:'Marcellus',serif;font-size:clamp(1.6rem,4.5vw,2.6rem);font-weight:400;margin-bottom:12px}
-.hero p{max-width:640px;margin:0 auto 22px;opacity:.92}
-.btn{display:inline-block;padding:11px 22px;border-radius:999px;font-weight:600;font-size:.95rem;margin:4px}
-.btn-wa{background:var(--green);color:#fff}
-.btn-call{background:#fff;color:var(--saffron-dark)}
-.btn-buy{background:var(--saffron);color:#fff}
-.btn-ghost{border:1.5px solid var(--line);color:var(--ink);background:#fff}
-section.cat{padding:34px 0 8px}
-section.cat h2{font-family:'Marcellus',serif;font-weight:400;font-size:1.5rem;color:var(--saffron-dark);margin-bottom:4px}
-section.cat .count{color:var(--muted);font-size:.9rem;margin-bottom:18px}
+.logo{font-family:var(--font-display);font-size:1.45rem;color:var(--kumkum)}
+.logo small{display:block;font-family:var(--font-body);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+nav.cats{display:flex;gap:16px;flex-wrap:wrap;font-size:.92rem}
+nav.cats a{color:var(--ink-soft);font-weight:500}
+nav.cats a:hover{color:var(--kumkum-dark)}
+.hero{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 85% 10%,#2a1f0c 0%,#120e08 45%,var(--ivory) 100%);border-bottom:1px solid var(--line);padding:58px 0 52px;text-align:center}
+.hero h1{font-size:clamp(2.2rem,5.2vw,3.6rem);line-height:1.08;letter-spacing:-.02em;padding-bottom:.08em;background:linear-gradient(180deg,#f6e3ad,#c9a24b);-webkit-background-clip:text;background-clip:text;color:transparent;margin:10px auto 0;max-width:20ch}
+.hero p{max-width:640px;margin:20px auto 26px;font-size:1.1rem;color:var(--ink-soft)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:0 1.4rem;border-radius:999px;font-weight:600;letter-spacing:.01em;font-size:.95rem;margin:4px;border:1px solid transparent;transition:background-color .2s var(--ease),color .2s,border-color .2s;cursor:pointer}
+.btn-buy{background:linear-gradient(180deg,#e2c272,#c9a24b);color:var(--on-gold)}
+.btn-buy:hover{background:var(--kumkum-dark)}
+.btn-ghost{background:transparent;color:var(--kumkum);border-color:var(--gold)}
+.btn-ghost:hover{background:var(--gold);color:var(--on-gold)}
+.btn-wa{background:var(--wa);color:#fff;border-color:var(--wa)}
+.btn-wa:hover{background:var(--wa-dark)}
+.btn-call{background:transparent;color:var(--kumkum);border-color:var(--gold)}
+.btn-call:hover{background:var(--gold);color:var(--on-gold)}
+section.cat{padding:38px 0 10px}
+section.cat h2{font-size:1.75rem;color:var(--ink);margin-bottom:2px}
+section.cat .count{color:var(--ink-soft);font-size:.88rem;margin-bottom:18px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s}
-.card:hover{box-shadow:0 6px 18px rgba(120,70,20,.12)}
-.card .ph{aspect-ratio:1;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s,transform .2s var(--ease)}
+.card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.card .ph{aspect-ratio:1;background:var(--well);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .card img{width:100%;height:100%;object-fit:contain}
 .card .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
-.card h3{font-size:1.02rem;line-height:1.35}
+.card h3{font-size:1.14rem;line-height:1.3}
 .card h3 a{color:var(--ink)}
-.card .hi{color:var(--muted);font-size:.88rem}
-.card .desc{font-size:.86rem;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex:1}
-.card .more{font-size:.88rem;font-weight:600;color:var(--saffron)}
-.crumb{padding:16px 0 0;font-size:.88rem;color:var(--muted)}
+.card .hi{color:var(--ink-soft);font-size:.88rem}
+.card .desc{font-size:.86rem;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+.card .more{font-size:.88rem;font-weight:600;color:var(--kumkum)}
+.crumb{padding:16px 0 0;font-size:.88rem;color:var(--ink-soft)}
+.crumb a:hover{color:var(--kumkum-dark)}
 .pdp{display:grid;grid-template-columns:1fr 1fr;gap:34px;padding:24px 0}
 @media(max-width:760px){.pdp{grid-template-columns:1fr}}
-.gallery .main{border:1px solid var(--line);border-radius:14px;background:#fff;aspect-ratio:1;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.gallery .main{border:1px solid var(--line);border-radius:var(--radius);background:var(--well);aspect-ratio:1;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .gallery .main img{width:100%;height:100%;object-fit:contain}
 .thumbs{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
-.thumbs a{width:64px;height:64px;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;display:block}
+.thumbs a{width:64px;height:64px;border:1px solid var(--line);border-radius:10px;background:var(--well);overflow:hidden;display:block}
+.thumbs a:hover{border-color:var(--gold)}
 .thumbs img{width:100%;height:100%;object-fit:cover}
-.pinfo h1{font-family:'Marcellus',serif;font-weight:400;font-size:1.7rem;line-height:1.3}
-.pinfo .hi{color:var(--muted);margin-bottom:12px}
-.pinfo .short{margin:10px 0 16px}
+.pinfo h1{font-size:2rem;line-height:1.15;color:var(--ink)}
+.pinfo .hi{color:var(--ink-soft);margin-bottom:12px;font-size:1.05rem}
+.pinfo .short{margin:10px 0 16px;color:var(--ink-soft)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 18px}
-.chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:.86rem;color:var(--ink)}
-.note{font-size:.85rem;color:var(--muted);margin-top:10px}
-.longdesc{padding:8px 0 36px;max-width:760px}
-.longdesc h3{font-family:'Marcellus',serif;font-weight:400;color:var(--saffron-dark);margin:20px 0 8px;font-size:1.15rem}
-.longdesc p{margin:10px 0}
-.longdesc ul{margin:8px 0 8px 22px}
-.longdesc li{margin:4px 0}
-.enquiry-label{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-footer.site{background:#3b2314;color:#e8dccb;margin-top:40px;padding:36px 0 28px;font-size:.92rem}
+.chip{display:inline-flex;align-items:center;min-height:36px;padding:0 .9rem;border-radius:999px;border:1px solid var(--line);background:var(--paper);font-size:.9rem;color:var(--ink)}
+.note{font-size:.85rem;color:var(--ink-soft);margin-top:10px}
+.longdesc{padding:8px 0 36px;max-width:68ch}
+.longdesc h3{font-size:1.35rem;margin:1.4em 0 .4em;color:var(--kumkum-dark)}
+.longdesc p{margin:.6em 0;color:var(--ink-soft)}
+.longdesc ul{margin:.6em 0;padding-left:1.2em;list-style:disc;color:var(--ink-soft)}
+.longdesc li{margin:.25em 0}
+.enquiry-label{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin:14px 0 6px}
+footer.site{background:var(--ivory-deep);color:var(--ink-soft);margin-top:44px;padding:36px 0 28px;font-size:.92rem;border-top:1px solid var(--line)}
 footer.site .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px}
-footer.site h4{font-family:'Marcellus',serif;font-weight:400;color:#fff;margin-bottom:8px}
-footer.site a{color:#f3c99a}
-footer.site .fine{margin-top:22px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);color:#bfa98f;font-size:.82rem}
-.topbar{background:var(--saffron-dark);color:#fff;text-align:center;font-size:.82rem;padding:6px 10px}
-.topbar a{color:#ffe0b3}
+footer.site h4{font-family:var(--font-display);font-weight:600;color:var(--kumkum);margin-bottom:8px;font-size:1.15rem}
+footer.site a{color:var(--kumkum-dark)}
+footer.site .fine{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:#8d8370;font-size:.82rem}
+.topbar{background:linear-gradient(180deg,#e2c272,#c9a24b);color:var(--on-gold);text-align:center;font-size:.82rem;padding:6px 10px;font-weight:600}
+.topbar a{color:var(--on-gold);text-decoration:underline}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important}}
 `;
 
 const CATS_ORDER = [];
@@ -132,7 +155,7 @@ function page({ title, desc, canonicalPath, ogImage, body, depth }) {
 ${ogImage ? `<meta property="og:image" content="${esc(ogImage)}">` : ''}
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Mukta:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Mukta:wght@400;500;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pre}style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%94%3C/text%3E%3C/svg%3E">
 </head>
@@ -223,6 +246,7 @@ ${hi ? `<div class="hi">${esc(hi)}</div>` : ''}
 
 const indexBody = `
 <div class="hero"><div class="wrap">
+<div class="eyebrow">Aditya Trading Company · Ujjain</div>
 <h1>Pooja Samagri, Dhoop &amp; Natural Products</h1>
 <p>Aditya Trading Company, Ujjain — makers and traders of the <strong>Siddhak</strong> range: cow dung cakes, havan samagri, dhoop, incense and eco-friendly essentials. Browse our full product range below; contact us for prices, bulk and trade enquiries.</p>
 <a class="btn btn-wa" href="${waLink('your products')}">WhatsApp enquiry</a>
